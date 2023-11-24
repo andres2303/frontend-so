@@ -1,0 +1,193 @@
+<div class="container p-5">
+
+    <div class="d-flex justify-content-between mb-3">
+        <div class="col col-lg-4">
+            <h3 class="text-start">BIBLIOTECA</h3>
+        </div>
+        <div class="espacio">.</div>
+        <div class="col col-lg-1">
+            <button type="button" class="btn btn-sm btn-primary mi-boton-hover" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                <i class="fa fa-plus"></i> Agregar
+            </button>            
+        </div>
+    </div>
+
+    <hr>
+    <table class="table table-sm m-1">
+        <thead class="encabezado-negro">
+            <tr>
+                <th>ID</th>
+                <th>Título</th>
+                <th>Código</th>
+                <th>N° Paginas</th>
+                <th>Precio</th>
+                <th>Stock</th>
+                <th>Categoría</th>
+                <th>Editorial</th>
+                <th>Autor</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of listCards">
+                <td>{{item.idLibros}}</td>
+                <td>{{item.titulo}}</td>
+                <td>{{item.codigo}}</td>
+                <td>{{item.nPaginas}}</td>
+                <td>{{item.precio}}</td>
+                <td>{{item.stock}}</td>
+                <td>{{item.categoria}}</td>
+                <td>{{item.editorial}}</td>
+                <td>{{item.autor}}</td>
+                <td>
+                    <button type="button" class="btn btn-success btn-sm iconoedit" data-bs-toggle="modal"
+                        data-bs-target="#exampleModal" (click)="selectItem(item)">
+                        <i class="fa fa-pencil"></i>
+                    </button>
+                    &nbsp;
+                    <button type="button" class="btn btn-danger btn-sm iconodelete" (click)="delete(item.idLibros)">
+                        <i class="fa fa-trash"></i>
+                    </button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    
+    <hr>
+
+</div>
+
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content p-2">
+
+            <div class="modal-header">
+                <h3 *ngIf="!isUpdate" class="modal-title">Agregar libro</h3>
+                <h3 *ngIf="isUpdate" class="modal-title">Editar libro</h3>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+                    (click)="newLibro()"></button>
+            </div>
+
+            <div class="modal-body">
+                <form [formGroup]="formCard">
+
+                    <div class="d-block justify-content-end m-2">
+
+                        <div class="col-lg-12 mb-2">
+                            <div class="d-flex justify-content-center">
+                                <div class="col-lg-3">
+                                    <label class="col-sm-1 col-form-label">Codigo</label>
+                                </div>
+                                <div class="col-lg-9">
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" formControlName="codigo">                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-12 mb-2">
+                            <div class="d-flex justify-content-center">
+                                <div class="col-lg-3">
+                                    <label class="col-sm-1 col-form-label">N°Paginas</label>
+                                </div>
+                                <div class="col-lg-9">
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" formControlName="nPaginas">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-12 mb-2">
+                            <div class="d-flex justify-content-center">
+                                <div class="col-lg-3">
+                                    <label class="col-sm-1 col-form-label">Titulo</label>
+                                </div>
+                                <div class="col-lg-9">
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" formControlName="titulo">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-12 mb-2">
+                            <div class="d-flex justify-content-center">
+                                <div class="col-lg-3">
+                                    <label class="col-sm-1 col-form-label">Precio</label>
+                                </div>
+                                <div class="col-lg-9">
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" formControlName="precio">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-12 mb-2">
+                            <div class="d-flex justify-content-center">
+                                <div class="col-lg-3">
+                                    <label class="col-sm-1 col-form-label">Stock</label>
+                                </div>
+                                <div class="col-lg-9">
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" formControlName="stock">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-12 mb-2">
+                            <div class="d-flex justify-content-center">
+                                <div class="col-lg-3">
+                                    <label class="col-sm-1 col-form-label">Categoria</label>
+                                </div>
+                                <div class="col-lg-9">
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" formControlName="categoria">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-12 mb-2">
+                            <div class="d-flex justify-content-center">
+                                <div class="col-lg-3">
+                                    <label class="col-sm-1 col-form-label">Editorial</label>
+                                </div>
+                                <div class="col-lg-9">
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" formControlName="editorial">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-12 mb-2">
+                            <div class="d-flex justify-content-center">
+                                <div class="col-lg-3">
+                                    <label class="col-sm-1 col-form-label">Autor</label>
+                                </div>
+                                <div class="col-lg-9">
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" formControlName="autor">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button *ngIf="!isUpdate" type="button" class="btn btn-success btn-sm agregarbtn" (click)="save()">Agregar</button>
+                <button *ngIf="isUpdate" type="button" class=" btn btn-dark btn-sm guardarbtn"
+                    (click)="update()">Guardar</button>
+            </div>
+        </div>
+
+    </div>
+
+</div>

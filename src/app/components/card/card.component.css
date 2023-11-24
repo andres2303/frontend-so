@@ -1,0 +1,40 @@
+.mi-boton-hover:hover {
+    background-color: white;
+    color:  #0056b3;
+    font-weight: bolder;
+  }
+
+  .agregarbtn:hover {
+    background-color: white;
+    color:  rgb(9, 92, 30);
+    font-weight: bolder;
+    border: 1px solid rgb(9, 92, 30);
+  }
+
+  .guardarbtn:hover {
+    background-color: white;
+    color:  black;
+    font-weight: bolder;
+    border: 1px solid black;
+  }
+
+  .encabezado-negro th {
+    background-color: black;
+    color: white;
+    border-radius: 1px;
+  }
+
+  .iconodelete:hover {
+    background-color: white; 
+    color: rgb(170, 35, 35);
+    border: 1px solid rgb(170, 35, 35);
+  }
+
+  .iconoedit:hover {
+    background-color: white; 
+    color: rgb(16, 112, 16);
+    border: 1px solid rgb(16, 112, 16);
+  }
+  
+
+  
